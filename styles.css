@@ -1,0 +1,491 @@
+/* ===== Fuentes de Google (Google Fonts) ===== */
+/* Importamos las familias de fuentes 'Merriweather' (para títulos) y 'Open Sans' (para cuerpo de texto) desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap');
+
+/* ===== Variables Globales de Diseño (Design Tokens) ===== */
+/* Utilizamos :root para definir variables accesibles en todo el CSS, facilitando el mantenimiento y coherencia de colores y tamaños. */
+:root {
+  --certeza-green: #007A33;        /* Verde principal de la marca */
+  --certeza-green-dark: #005222;   /* Verde oscuro usado en gradientes y fondos de footer */
+  --certeza-blue: #1A4273;         /* Azul específico para la sección y producto 0.0 */
+  --certeza-red: #FF2B00;          /* Rojo vibrante para detalles como la estrella y barras de progreso */
+  --bg-light: #ffffff;             /* Fondo blanco estándar */
+  --bg-gray: #f5f5f5;              /* Fondo gris claro para áreas de contraste suave */
+  --text-dark: #111111;            /* Color casi negro para textos principales buscando buena legibilidad */
+  --text-gray: #777777;            /* Gris para textos secundarios y párrafos extensos */
+  --text-light: #ffffff;           /* Texto blanco puro para colocar sobre fondos oscuros */
+  --nav-height: 90px;              /* Altura inicial de la barra de navegación */
+}
+
+/* ===== Reseteo (Reset) y Estilos Base ===== */
+/* Reseteo universal: quita márgenes/rellenos de todos los elementos y hace que el padding/border se incluya en el ancho total */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* Habilita el desplazamiento suave en toda la página (cuando se hace clic en anclas) y establece el tamaño base de la fuente */
+html { scroll-behavior: smooth; font-size: 16px; }
+
+/* Estilos base para el cuerpo de la página web */
+body {
+  font-family: 'Open Sans', sans-serif; /* Fuente por defecto para todo el texto */
+  background: var(--bg-light);          /* Fondo base claro */
+  color: var(--text-dark);              /* Texto base oscuro */
+  overflow-x: hidden;                   /* Previene la aparición de scroll horizontal si hay elementos desbordados */
+  -webkit-font-smoothing: antialiased;  /* Aplica un renderizado de fuentes más suave (anti-aliasing) en Chrome/Safari */
+}
+
+/* Configuración unificada para todos los encabezados, otorgándoles un estilo clásico e imponente */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+  font-weight: 900;
+  line-height: 1.1; /* Reduce el espacio interlineal entre las líneas del título */
+}
+
+/* Quita el subrayado automático de los enlaces en toda la página */
+a { text-decoration: none; }
+
+/* ===== Tipografía y Etiquetas (Tags) ===== */
+/* Estilos para pequeñas etiquetas categóricas (ej. "Nuestra Historia") */
+.tag {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.75rem;          /* Tamaño pequeño */
+  font-weight: 700;            /* Negrita */
+  text-transform: uppercase;   /* Convierte todo el texto a mayúsculas */
+  letter-spacing: 1.5px;       /* Espaciado amplio entre las letras */
+  margin-bottom: 15px;         /* Separación con el elemento inferior (normalmente un título) */
+}
+/* Modificadores de color para la etiqueta */
+.tag.white { color: #fff; }
+.tag.gray { color: #999; }
+
+/* Estilo para los títulos principales de cada sección */
+.section-title {
+  /* clamp() establece un tamaño adaptable: mínimo 2rem, ideal 4vw (basado en el ancho de la pantalla), máximo 3rem */
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 25px; /* Espacio debajo del título */
+}
+/* Modificadores de color usando las variables CSS para los títulos */
+.section-title.green { color: var(--certeza-green); }
+.section-title.blue { color: var(--certeza-blue); }
+
+/* Estilo general para los párrafos descriptivos largos */
+.desc-text {
+  font-size: 1.05rem;
+  line-height: 1.8; /* Mayor interlineado para facilitar la lectura de textos largos */
+  color: var(--text-gray);
+  margin-bottom: 30px;
+}
+
+/* ===== Botones ===== */
+/* Clase base compartida para los botones de llamada a la acción */
+.btn {
+  display: inline-block;
+  padding: 15px 40px; /* Relleno superior/inferior 15px, izquierda/derecha 40px */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cambia el cursor a mano al pasar por encima */
+  transition: all 0.3s ease; /* Transición suave de 0.3s para cualquier cambio (ej. color en hover) */
+}
+
+/* Variación de botón color blanco */
+.btn-white {
+  background: #fff;
+  color: var(--text-dark);
+}
+/* Efecto hover: se vuelve un poco más oscuro al poner el ratón encima */
+.btn-white:hover { background: #f0f0f0; }
+
+/* Variación de botón color azul (para 0.0) */
+.btn-blue {
+  background: var(--certeza-blue);
+  color: #fff;
+}
+/* Efecto hover: se oscurece el azul */
+.btn-blue:hover { background: #123156; }
+
+/* Variación de botón color verde (para original) */
+.btn-green {
+  background: var(--certeza-green);
+  color: #fff;
+}
+.btn-green:hover { background: var(--certeza-green-dark); }
+
+/* ===== Barra de Navegación (Navbar) ===== */
+/* Estilos iniciales (estáticos) para la barra superior */
+.navbar {
+  position: absolute; /* Se posiciona encima del Hero */
+  top: 0; left: 0; width: 100%; height: var(--nav-height);
+  z-index: 1000; /* Z-index muy alto para asegurar que siempre esté por encima de otros elementos */
+  display: flex; align-items: center; justify-content: space-between; /* Distribuye el logo a la izquierda y menú a la derecha */
+  padding: 0 60px; /* Espaciado lateral */
+  /* Gradiente oscuro superior para que el texto blanco sea legible sobre cualquier imagen clara de fondo */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+/* Clase dinámica que se añade mediante JS cuando el usuario hace scroll hacia abajo */
+.navbar.scrolled {
+  position: fixed; /* Mantiene la barra fija en la parte superior al bajar */
+  background: rgba(0,0,0,0.95); /* Color sólido casi negro */
+  height: 70px; /* Reduce un poco la altura para no ocupar mucha pantalla */
+}
+
+/* Estilo del logotipo en la barra de navegación */
+.nav-logo {
+  color: #fff;
+  font-family: 'Merriweather', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  display: flex; align-items: center; gap: 8px; /* Centra el texto y la estrella con un espacio de 8px */
+}
+/* Estilo de la estrella decorativa en el logo */
+.nav-logo .star {
+  color: var(--certeza-red);
+  font-size: 1.2rem;
+}
+
+/* Contenedor de la lista de enlaces del menú */
+.nav-links {
+  display: flex; gap: 25px; list-style: none; align-items: center; /* Enlaces en fila, separados 25px y sin viñetas */
+}
+/* Estilo de los enlaces (<a>) individuales de la navegación */
+.nav-links a {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s; /* Transición para el efecto hover */
+}
+/* Efecto hover: texto se vuelve verde al pasar el ratón */
+.nav-links a:hover { color: var(--certeza-green); }
+
+/* ===== Sección Hero (Pantalla Principal) ===== */
+/* Contenedor grande que ocupa toda la pantalla inicial */
+.hero {
+  position: relative;
+  height: 100vh; /* 100% del alto de la ventana visible del navegador (viewport) */
+  min-height: 600px; /* Asegura un tamaño mínimo en pantallas muy apaisadas o pequeñas */
+  display: flex;
+  align-items: center; /* Centra verticalmente el contenido */
+  padding: 0 80px;
+  background: #000; /* Fondo negro como base */
+  overflow: hidden; /* Oculta cualquier parte de la imagen de fondo que se salga del contenedor */
+}
+/* Imagen de fondo de la pantalla Hero */
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; /* Cubre todo el área manteniendo proporciones, recorta lo sobrante */
+  z-index: 0; /* Colocado atrás */
+  opacity: 0.8; /* Opacidad un poco baja para mejorar el contraste con el texto */
+}
+/* Contenedor del texto principal dentro del Hero */
+.hero-content {
+  position: relative;
+  z-index: 1; /* Colocado por encima de la imagen de fondo */
+  max-width: 600px; /* Limita el ancho del texto */
+  color: #fff;
+  margin-top: 50px;
+}
+/* Título principal H1 */
+.hero h1 {
+  /* Tamaño adaptable igual que section-title pero más grande */
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  margin-bottom: 40px;
+}
+
+/* ===== Sección Historia ===== */
+/* Estilos del contenedor de la sección 'Historia' */
+.historia-section {
+  padding: 80px 60px; /* Espaciado interno generoso */
+  max-width: 1600px; /* Ancho máximo para pantallas enormes */
+  margin: 0 auto; /* Centrado automático en la pantalla */
+}
+.historia-section > .section-title {
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+/* Sistema de cuadrícula para colocar elementos lado a lado en 2 columnas iguales */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columnas ocupando 1 fracción (50%) cada una */
+  gap: 30px; /* Separación de 30px entre columnas */
+}
+
+/* Tarjeta individual de historia */
+.story-card {
+  position: relative;
+  width: 694px; /* Ancho exacto definido para mantener proporciones idénticas a la marca original */
+  max-width: 100%; /* Si la pantalla es más pequeña, se reduce automáticamente */
+  height: 390.367px; /* Alto estricto para simetría milimétrica */
+  background: #ccc;
+  overflow: hidden; /* Oculta el excedente cuando la imagen crece en el efecto hover */
+  margin: 0 auto; /* Centra la tarjeta si sobra espacio */
+}
+/* Imagen dentro de la tarjeta de historia */
+.story-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease; /* Transición larga para un efecto de zoom elegante */
+}
+/* Efecto de acercamiento (zoom) en la imagen al hacer hover */
+.story-card:hover img {
+  transform: scale(1.05); /* Aumenta el tamaño un 5% */
+}
+/* Recuadro oscuro con el título superpuesto sobre la imagen */
+.story-box {
+  position: absolute;
+  bottom: 0; left: 0; /* Anclado en la esquina inferior izquierda */
+  background: rgba(0, 122, 51, 0.95); /* Fondo verde semi-transparente */
+  color: #fff;
+  padding: 30px;
+  width: 85%; /* No ocupa todo el ancho de la tarjeta para dejar un margen visual a la derecha */
+}
+.story-box h3 {
+  font-size: 1.8rem;
+  font-family: 'Merriweather', serif;
+}
+
+/* ===== Sección de Responsabilidad Dividida (Split) ===== */
+/* Contenedor principal que se divide en dos partes */
+.resp-split {
+  display: flex;
+  min-height: 500px;
+}
+
+/* Lado izquierdo (verde oscuro con logos) */
+.resp-left {
+  flex: 1; /* Ocupa el 50% del espacio disponible */
+  background: radial-gradient(circle, #008f3c 0%, #005222 100%); /* Gradiente radial (circular) verde */
+  display: flex;
+  flex-direction: column; /* Coloca los elementos uno debajo de otro */
+  align-items: center;
+  justify-content: center; /* Centra todo en el medio vertical/horizontalmente */
+  color: #fff;
+  padding: 40px;
+}
+.resp-left-logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.resp-left-logo .star {
+  color: var(--certeza-red);
+  font-size: 3rem; /* Estrella grande */
+  display: block;
+  margin-bottom: 10px;
+}
+.resp-left-logo span {
+  font-family: 'Merriweather', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+}
+/* Contenedor de los círculos con mensajes de responsabilidad ("Enjoy responsibly") */
+.resp-icons {
+  display: flex; gap: 30px;
+}
+/* Estilo del círculo de mensaje */
+.resp-icons .icon {
+  width: 80px; height: 80px;
+  border: 2px dashed #fff; /* Borde de línea punteada/discontinua */
+  border-radius: 50%; /* Hace que sea un círculo perfecto */
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; text-align: center; font-size: 0.8rem;
+}
+
+/* Lado derecho (fondo blanco con texto explicativo) */
+.resp-right {
+  flex: 1; /* Ocupa el otro 50% */
+  background: #fff;
+  padding: 80px 100px;
+  display: flex;
+  flex-direction: column; /* Orden vertical */
+  justify-content: center; /* Centrado vertical */
+}
+
+/* ===== Sección de Producto (Split) ===== */
+/* Contenedor dividido para la sección del producto y el slider */
+.product-split {
+  display: flex;
+  align-items: center; /* Centra los elementos verticalmente */
+  padding: 100px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+/* Parte izquierda (Textos y botón) */
+.prod-left {
+  flex: 1;
+  padding-right: 60px; /* Deja espacio con la imagen que está a la derecha */
+}
+/* Parte derecha (Imagen y controles del slider) */
+.prod-right {
+  flex: 1;
+  text-align: center;
+}
+/* Imagen de la botella de cerveza */
+.prod-right img {
+  max-height: 600px; /* Altura máxima para no desbordar */
+  object-fit: contain; /* Ajusta la imagen dentro del contenedor respetando las proporciones completas */
+}
+
+/* Controles del Slider (Botones < > y línea de progreso) */
+.slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 20px;
+}
+/* Línea gris base del slider */
+.slider-line {
+  flex: 1;
+  height: 2px;
+  background: #e0e0e0;
+  position: relative; /* Contexto para la barra de progreso posicionada absolutamente */
+}
+/* Línea de progreso (parte coloreada del slider) */
+.slider-progress {
+  position: absolute;
+  top: 0; left: 0; height: 100%;
+  background: var(--certeza-red); /* Color de progreso (rojo por defecto, cambiado con JS) */
+  width: 50%; /* Cambiado con JS dinámicamente según el slide activo */
+  transition: all 0.3s; /* Transición para moverse suavemente */
+}
+/* Botones de flechas del slider (< y >) */
+.slider-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%; /* Forma redonda */
+  background: #f5f5f5;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; color: #555;
+}
+
+/* ===== Sección de Campañas ===== */
+/* Estilo del bloque de campañas, similar a otros pero con un fondo blanco sólido */
+.campaign-section {
+  padding: 80px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #fff;
+}
+
+/* ===== Pie de Página (Footer) ===== */
+/* Contenedor principal del Footer */
+.footer {
+  background: linear-gradient(to bottom, #005222 0%, #00220e 100%); /* Gradiente verde oscuro hacia casi negro */
+  color: #fff;
+  padding: 80px 60px;
+}
+/* Grid del footer para acomodar varias columnas de enlaces */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr; /* 4 columnas de diferentes proporciones: 2 partes, 2 partes, 1 parte, 1 parte */
+  gap: 40px; /* Separación general */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+/* Cada columna individual del footer */
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Separación vertical entre enlaces */
+}
+/* Enlaces dentro del footer */
+.footer-column a {
+  color: #e0e0e0; /* Gris muy claro */
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+/* Hover de enlaces del footer */
+.footer-column a:hover {
+  color: #fff; /* Se iluminan en blanco al pasar el ratón */
+}
+/* Título pequeño para la sección de redes sociales */
+.footer-social-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+}
+/* Contenedor de iconos de redes (Facebook, Instagram, YouTube) */
+.footer-social-icons {
+  display: flex;
+  gap: 15px;
+}
+.footer-social-icons a {
+  color: #e0e0e0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.footer-social-icons a:hover {
+  color: #fff;
+}
+/* Alineación de la última columna que contiene el logo redondo final */
+.footer-logo-end {
+  display: flex;
+  justify-content: flex-end; /* Lo alinea a la derecha */
+  align-items: flex-start; /* Lo alinea arriba */
+}
+/* Diseño del círculo de responsabilidad en el footer (similar al usado arriba) */
+.footer-logo-end .icon {
+  width: 60px; height: 60px;
+  border: 1px dashed #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.5rem; text-align: center; font-weight: bold;
+}
+
+/* ===== Ventanas Modales (Modals) ===== */
+/* Fondo translúcido oscuro (overlay) del modal */
+.modal {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); /* Efecto de desenfoque al fondo (si lo soporta el navegador) */
+  display: flex; align-items: center; justify-content: center; /* Centra la caja del modal */
+  z-index: 20000; /* Z-index altísimo para ir encima de todo */
+  opacity: 0; pointer-events: none; /* Oculto y desactivado por defecto */
+  transition: opacity 0.4s ease; /* Transición suave al aparecer */
+}
+/* Al agregar la clase .active vía JavaScript, el modal se vuelve visible y clickeable */
+.modal.active { opacity: 1; pointer-events: auto; }
+
+/* Caja de contenido central del modal */
+.modal-content {
+  background: var(--bg-light); color: var(--text-dark);
+  width: 90%; max-width: 600px; max-height: 80vh; /* Máximo el 80% de la altura del viewport */
+  overflow-y: auto; /* Scroll vertical interno si el texto es muy largo */
+  padding: 40px; position: relative;
+}
+/* Botón de la esquina ('X') para cerrar el modal */
+.modal-close {
+  position: absolute; top: 20px; right: 20px;
+  background: none; border: none; font-size: 2rem;
+  cursor: pointer; color: var(--text-dark);
+}
+/* Título interior del modal */
+.modal-title { font-size: 2rem; margin-bottom: 20px; color: var(--certeza-green); }
+/* Texto dentro del modal */
+.modal-body p { margin-bottom: 15px; line-height: 1.6; color: var(--text-gray); }
+
+/* ===== Diseño Adaptable (Responsive Web Design / Media Queries) ===== */
+
+/* Estilos para pantallas de tablets u ordenadores portátiles pequeños (menos de 1024px) */
+@media (max-width: 1024px) {
+  .nav-links { display: none; } /* Oculta los enlaces de navegación (aquí iría un menú hamburguesa opcional) */
+  .grid-2 { grid-template-columns: 1fr; } /* Transforma la cuadrícula a 1 sola columna vertical */
+  .resp-split { flex-direction: column; } /* Pone las dos partes de responsabilidad una debajo de otra */
+  .product-split { flex-direction: column; text-align: center; } /* Igualmente apila la sección de productos y los centra */
+  .prod-left { padding-right: 0; margin-bottom: 40px; } /* Elimina el padding lateral que separaba a la imagen */
+  .footer-grid { grid-template-columns: 1fr 1fr; } /* El footer ahora tendrá 2 columnas en lugar de 4 */
+}
+
+/* Estilos para teléfonos móviles (menos de 600px) */
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; } /* El footer pasa a tener una sola columna apilada */
+}

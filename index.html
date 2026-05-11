@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración de codificación de caracteres para soportar tildes y caracteres especiales -->
+    <meta charset="UTF-8">
+    <!-- Configuración del viewport para hacer que la página sea responsiva en dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta descripción que ayuda en el SEO y aparece en los resultados de búsqueda -->
+    <meta name="description"
+        content="Bienvenidos al mundo Certeza®. Descubre nuestra historia, productos y la pasión por elaborar la mejor cerveza desde 1927.">
+    <!-- Título de la pestaña que se muestra en el navegador -->
+    <title>Certeza® | La Cerveza con Carácter</title>
+    <!-- Enlace a la hoja de estilos CSS externa que define el diseño y la apariencia -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR (BARRA DE NAVEGACIÓN) ===== -->
+    <!-- Contenedor principal de la barra de navegación, con id para interactuar desde JavaScript -->
+    <nav class="navbar" id="navbar">
+        <!-- Enlace del logotipo que redirige al inicio, contiene una estrella y el nombre -->
+        <a href="#" class="nav-logo">
+            <span class="star">★</span>
+            Certeza®
+        </a>
+        <!-- Lista desordenada para los enlaces de navegación a las distintas secciones -->
+        <ul class="nav-links">
+            <li><a href="#historia">Nuestra Historia</a></li>
+            <li><a href="#productos">Nuestros Productos</a></li>
+            <li><a href="#patrocinios">Patrocinios</a></li>
+            <li><a href="#campanas">Campañas</a></li>
+            <li><a href="#sostenibilidad">Sostenibilidad</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== HERO (SECCIÓN PRINCIPAL DE INICIO) ===== -->
+    <!-- Sección de encabezado principal que ocupa la primera pantalla al cargar la página -->
+    <header class="hero" id="hero">
+        <!-- Imagen de fondo de la sección Hero -->
+        <img src="img/Gemini_Generated_Image_qiknosqiknosqikn.png" alt="Certeza Hero" class="hero-bg" style="transform: scale(1.03);">
+        <!-- Contenedor para el contenido de texto dentro del Hero -->
+        <div class="hero-content">
+            <!-- Etiqueta pequeña indicando la categoría -->
+            <span class="tag white">Nuestra Historia</span>
+            <!-- Título principal de la página web -->
+            <h1>Bienvenido al<br>mundo<br>Certeza®</h1>
+            <!-- Botón de llamado a la acción que lleva a la sección de historia -->
+            <a href="#historia" class="btn btn-white">Descubre más</a>
+        </div>
+    </header>
+
+    <!-- ===== HISTORIA (SECCIÓN SOBRE NOSOTROS) ===== -->
+    <!-- Sección donde se explica la historia y el proceso de la cerveza -->
+    <section class="historia-section" id="historia">
+        <!-- Título de la sección en color verde -->
+        <h2 class="section-title green">NUESTRA HISTORIA</h2>
+        <!-- Contenedor con grid de 2 columnas para organizar las tarjetas -->
+        <div class="grid-2">
+            <!-- Tarjeta 1: Historia. Al hacer clic abre el modal "modalStory" -->
+            <a href="javascript:void(0)" onclick="openModal('modalStory')" class="story-card">
+                <!-- Imagen representativa de la historia -->
+                <img src="img/certeza_lifestyle.png" alt="Historia">
+                <!-- Caja superpuesta con texto y etiqueta -->
+                <div class="story-box">
+                    <span class="tag white">Nuestra Historia</span>
+                    <h3>Nacida en España, elaborada para el mundo.</h3>
+                </div>
+            </a>
+            <!-- Tarjeta 2: Proceso. Al hacer clic abre el modal "modalProcess" -->
+            <a href="javascript:void(0)" onclick="openModal('modalProcess')" class="story-card">
+                <!-- Imagen representativa del proceso de elaboración -->
+                <img src="img/certeza_brewery.png" alt="Proceso">
+                <!-- Caja superpuesta con texto y etiqueta -->
+                <div class="story-box">
+                    <span class="tag white">El Proceso de Elaboración</span>
+                    <h3>Calidad Pura Malta</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCTOS (SECCIÓN DE PRODUCTOS CON SLIDER INTERACTIVO) ===== -->
+    <!-- Sección que muestra el producto seleccionado, dividida en dos partes (texto e imagen) -->
+    <section class="product-split" id="productos">
+        <!-- Lado izquierdo: Textos y botón del producto -->
+        <div class="prod-left">
+            <!-- Título del producto actual (dinámico) -->
+            <h2 class="section-title blue" id="prodTitle">Certeza® 0.0</h2>
+            <!-- Descripción del producto actual (dinámico) -->
+            <p class="desc-text" id="prodDesc">
+                Cero alcohol, 100% Certeza®. Estamos orgullosos de nuestra Certeza® 0.0, al estar elaborada con devoción
+                y con el respaldo de nuestra herencia en el conocimiento de la cerveza.
+            </p>
+            <!-- Botón de acción para el producto actual -->
+            <a href="javascript:void(0)" class="btn btn-blue" id="prodBtn">Producto</a>
+        </div>
+        <!-- Lado derecho: Imagen y controles del slider -->
+        <div class="prod-right">
+            <!-- Imagen del producto actual (dinámica) -->
+            <img src="img/img00.png" alt="Certeza 0.0" id="prodImg">
+
+            <!-- Controles para cambiar de producto (slider) -->
+            <div class="slider-controls">
+                <!-- Botón para retroceder (llama a la función swapProduct) -->
+                <button class="slider-btn" onclick="swapProduct(0)">&lt;</button>
+                <!-- Línea de progreso visual del slider -->
+                <div class="slider-line">
+                    <div class="slider-progress" id="sliderProg"></div>
+                </div>
+                <!-- Botón para avanzar (llama a la función swapProduct) -->
+                <button class="slider-btn" onclick="swapProduct(1)">&gt;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RESPONSABILIDAD / SOSTENIBILIDAD ===== -->
+    <!-- Sección sobre el consumo responsable, también dividida en dos lados -->
+    <section class="resp-split" id="sostenibilidad">
+        <!-- Lado izquierdo: Elementos visuales, logos e insignias de consumo -->
+        <div class="resp-left">
+            <!-- Logotipo grande de la sección -->
+            <div class="resp-left-logo">
+                <span class="star">★</span>
+                <span>Certeza®</span>
+            </div>
+            <!-- Contenedor para iconos/mensajes de advertencia -->
+            <div class="resp-icons">
+                <div class="icon">ENJOY RESPONSIBLY</div>
+                <div class="icon">NEVER DRINK & DRIVE</div>
+            </div>
+        </div>
+        <!-- Lado derecho: Contenido de texto sobre la política de responsabilidad -->
+        <div class="resp-right">
+            <!-- Etiqueta pequeña -->
+            <span class="tag gray">DISFRUTA RESPONSABLEMENTE</span>
+            <!-- Título de la sección -->
+            <h2 class="section-title green">Fomentando Responsabilidad</h2>
+            <!-- Párrafo explicativo -->
+            <p class="desc-text">
+                El consumo responsable es lo más importante para nosotros. Tenemos dos formas diferentes de defenderlo,
+                en la calle y fuera de ella. En primer lugar, sabemos que los accidentes no sólo pasan en la calle. Por
+                eso motivamos el consumo responsable, estés o no conduciendo. Y en segundo lugar, porque creemos que el
+                mejor conductor es el que nunca bebe antes de conducir.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== CAMPAÑAS Y PATROCINIOS ===== -->
+    <!-- Sección sencilla de texto que aborda las campañas publicitarias -->
+    <section class="campaign-section" id="campanas">
+        <!-- Etiqueta de la categoría -->
+        <span class="tag gray">CAMPAÑAS Y PATROCINIOS</span>
+        <!-- Título principal -->
+        <h2 class="section-title green">La Magia de Certeza®</h2>
+        <!-- Texto explicativo sobre la filosofía de sus campañas -->
+        <p class="desc-text">
+            Aprovechando nuestra rica historia y orgullosa herencia, nuestras campañas cuentan el proceso del desarrollo
+            de nuestra marca. La voz de Certeza® es ingeniosa, inteligente y habla de una forma refrescante. Nuestra
+            visión es positiva y sí, a veces es un poco atrevida. Lo cierto es que cada campaña es 100% Certeza®.
+            ¡Disfrútala!
+        </p>
+    </section>
+
+    <!-- ===== FOOTER (PIE DE PÁGINA) ===== -->
+    <!-- Pie de página con enlaces útiles, políticas y redes sociales -->
+    <footer class="footer">
+        <!-- Contenedor tipo grid para distribuir los enlaces en columnas -->
+        <div class="footer-grid">
+            <!-- Primera columna: Enlaces de navegación internos y legales -->
+            <div class="footer-column">
+                <a href="#sostenibilidad">Disfruta Responsablemente</a>
+                <a href="#patrocinios">Patrocinios</a>
+                <a href="#campanas">Campañas</a>
+                <a onclick="openModal('modalCookies')">Política de Cookies</a>
+                <a onclick="openModal('modalCookies')">Configuración de Cookies</a>
+                <a onclick="openModal('modalFAQ')">FAQ</a>
+            </div>
+            <!-- Segunda columna: Más enlaces corporativos y legales -->
+            <div class="footer-column">
+                <a href="#">Parte de la familia Certeza España</a>
+                <a onclick="openModal('modalContact')">Contacta con nosotros</a>
+                <a onclick="openModal('modalPrivacy')">Política Social</a>
+                <a onclick="openModal('modalLegal')">Aviso Legal</a>
+                <a onclick="openModal('modalPrivacy')">Política de Privacidad</a>
+            </div>
+            <!-- Tercera columna: Enlaces a redes sociales con iconos en formato SVG -->
+            <div class="footer-column">
+                <div class="footer-social-title">Social</div>
+                <div class="footer-social-icons">
+                    <a href="#" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" aria-label="Youtube">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    </a>
+                </div>
+            </div>
+            <!-- Cuarta columna: Logo alusivo a beber con responsabilidad -->
+            <div class="footer-logo-end">
+                <div class="icon">ENJOY<br>RESPONSIBLY</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== VENTANAS MODALES ===== -->
+    <!-- Contenedores ocultos por defecto que se muestran por encima de todo el contenido al hacer clic -->
+    
+    <!-- Modal: Nuestra Historia -->
+    <div class="modal" id="modalStory">
+        <div class="modal-content">
+            <!-- Botón para cerrar la ventana modal -->
+            <button class="modal-close" onclick="closeModal('modalStory')">×</button>
+            <h2 class="modal-title">Nuestra Historia</h2>
+            <div class="modal-body">
+                <p>Nacida en España, elaborada para el mundo. Si su sabor es rico, su historia aún más.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: El Proceso -->
+    <div class="modal" id="modalProcess">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modalProcess')">×</button>
+            <h2 class="modal-title">El Proceso</h2>
+            <div class="modal-body">
+                <p>Calidad Pura Malta. Cada cerveza es el resultado de un proceso meticuloso.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: Aviso Legal -->
+    <div class="modal" id="modalLegal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modalLegal')">×</button>
+            <h2 class="modal-title">Aviso Legal</h2>
+            <div class="modal-body">
+                <p>Contenido legal de Certeza®.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: Privacidad -->
+    <div class="modal" id="modalPrivacy">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modalPrivacy')">×</button>
+            <h2 class="modal-title">Privacidad</h2>
+            <div class="modal-body">
+                <p>Protección de datos.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: Cookies -->
+    <div class="modal" id="modalCookies">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modalCookies')">×</button>
+            <h2 class="modal-title">Cookies</h2>
+            <div class="modal-body">
+                <p>Uso de cookies en nuestro sitio.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CÓDIGO JAVASCRIPT ===== -->
+    <!-- Scripts para controlar interactividad (navbar, modales, slider de productos) -->
+    <script>
+        /* --- Efecto de fondo en la Barra de Navegación al hacer Scroll --- */
+        // Agregamos un evento para detectar cuando el usuario desplaza la página hacia abajo.
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            // Si el desplazamiento es mayor a 50 píxeles, se añade la clase 'scrolled' que cambia el color de fondo.
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                // Si estamos arriba del todo, eliminamos la clase para que el fondo vuelva a ser transparente.
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        /* --- Funciones para abrir y cerrar Ventanas Modales --- */
+        // Función que recibe el ID de un modal y le agrega la clase 'active' para hacerlo visible.
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            // Deshabilitamos el desplazamiento vertical del cuerpo de la página mientras el modal esté abierto.
+            document.body.style.overflow = 'hidden';
+        }
+        // Función que recibe el ID de un modal y le quita la clase 'active' para ocultarlo.
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            // Restauramos el desplazamiento vertical del cuerpo de la página.
+            document.body.style.overflow = 'auto';
+        }
+
+        /* --- Lógica del Slider/Carrusel de Productos --- */
+        // Definimos un arreglo con los datos de cada producto que mostraremos en el slider.
+        const prods = [
+            {
+                title: 'Certeza® 0.0',
+                desc: 'Cero alcohol, 100% Certeza®. Estamos orgullosos de nuestra Certeza® 0.0, al estar elaborada con devoción y con el respaldo de nuestra herencia en el conocimiento de la cerveza.',
+                img: 'img/img00.png',
+                color: 'var(--certeza-blue)',
+                btnClass: 'btn-blue',
+                prog: '50%'
+            },
+            {
+                title: 'Certeza® Original',
+                desc: 'Siempre es refrescante encontrarnos con algo conocido. Fría, refrescante y con la más alta calidad de Certeza®. Ha sido disfrutada en lugares cercanos y lejanos desde 1927.',
+                img: 'img/imgori.png', // Fallback, same bottle for now or we update if needed
+                color: 'var(--certeza-green)',
+                btnClass: 'btn-green',
+                prog: '100%'
+            }
+        ];
+
+        // Variable para llevar el control de cuál producto está activo actualmente (0 para el primero, 1 para el segundo).
+        let currProd = 0;
+        
+        // Función para cambiar de producto según la dirección presionada (0 = izquierdo, 1 = derecho).
+        function swapProduct(dir) {
+            // Actualizamos la variable de estado con el índice correspondiente.
+            if (dir === 0) currProd = 0; 
+            if (dir === 1) currProd = 1; 
+
+            // Obtenemos los datos del producto actual desde el arreglo 'prods'.
+            const p = prods[currProd];
+
+            // Obtenemos las referencias a los elementos del DOM que necesitamos modificar.
+            const titleEl = document.getElementById('prodTitle');
+            const descEl = document.getElementById('prodDesc');
+            const imgEl = document.getElementById('prodImg');
+            const btnEl = document.getElementById('prodBtn');
+            const progEl = document.getElementById('sliderProg');
+
+            // 1. Fase de desvanecimiento (Fade out)
+            // Bajamos la opacidad a 0 para ocultar visualmente los elementos de forma suave.
+            titleEl.style.opacity = 0; descEl.style.opacity = 0; imgEl.style.opacity = 0;
+
+            // Esperamos 300 milisegundos a que termine la animación de opacidad.
+            setTimeout(() => {
+                // 2. Fase de actualización de contenidos
+                titleEl.textContent = p.title;
+                titleEl.style.color = p.color;
+                descEl.textContent = p.desc;
+                imgEl.src = p.img;
+
+                // Actualizamos las clases y estilos del botón dependiendo del producto.
+                btnEl.className = 'btn';
+                if (currProd === 0) btnEl.classList.add('btn-blue');
+                else {
+                    btnEl.style.background = 'var(--certeza-green)';
+                    btnEl.style.color = '#fff';
+                }
+
+                // Actualizamos el ancho y el color de la barra de progreso en el slider.
+                progEl.style.width = p.prog;
+                progEl.style.backgroundColor = currProd === 0 ? 'var(--certeza-blue)' : 'var(--certeza-green)';
+
+                // 3. Fase de aparición (Fade in)
+                // Subimos la opacidad nuevamente a 1 para mostrar el nuevo contenido.
+                titleEl.style.opacity = 1; descEl.style.opacity = 1; imgEl.style.opacity = 1;
+            }, 300);
+        }
+
+        // Configuración inicial al cargar la página: añadimos una transición suave de 0.3 segundos
+        // en la opacidad de los elementos que van a cambiar, para lograr el efecto Fade in / Fade out.
+        ['prodTitle', 'prodDesc', 'prodImg'].forEach(id => {
+            document.getElementById(id).style.transition = 'opacity 0.3s';
+        });
+    </script>
+</body>
+
+</html>
